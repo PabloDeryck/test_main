@@ -1,3 +1,5 @@
+import csv
+
 import pytest
 
 from main import somar_dois_valores, calcular_area_do_circulo, calcular_volume_do_paralelograma
@@ -30,6 +32,20 @@ def testar_calcular_area_do_circulo(raio,resultado_esperado):
 
     #3 valida
     assert resultado_esperado == resultado_atual
+
+
+def ler_dados_csv():
+    dados_csv = [] #criação de uma lista vazia
+    nome_arquivo = 'test/db/massa_caixa.csv'      #local e nome do arquivo de massa
+    try:
+        with open(nome_arquivo, newline='') as csvfile:
+            campos = csv.reader(csvfile, delimeter = ',')
+            next (campos)
+            for linha in campos:
+                dados_csv.append(linha)
+
+
+
 
 def testar_calcular_volume_do_paralelograma():
     #1 configura
